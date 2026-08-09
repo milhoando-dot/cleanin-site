@@ -67,16 +67,9 @@
       </ul>
     </div>
     <div class="forma">
-      <form class="cartao-form pedido" action="https://formspree.io/f/xrpzerkq" method="POST" data-assunto="Quote request">
+      <form class="cartao-form pedido" action="https://cleanin-formulario.trevistudios.workers.dev" method="POST" data-assunto="Quote request">
         <input type="hidden" name="_subject" value="Clean-in · New quote request" />
-        <!-- ⚠️ `_next` SÓ FUNCIONA NO PLANO PAGO do Formspree. Testado em
-             09/08/2026 com envio real e sem JavaScript: continua caindo em
-             formspree.io/thanks. Fica aqui porque passa a valer sozinho no dia
-             em que a conta virar paga, e não custa nada.
-             Com JavaScript nada disso é usado: o envio é por fetch e a
-             confirmação aparece na própria página. -->
-        <input type="hidden" name="_next"
-               value="https://getclean-in.com/thank-you" />
+
         <h2>Request a Custom Cleaning Quote</h2>
         <p class="mini">Experience the gold standard in <i>professional care</i>.
         Please provide your details below for a personalized quote.</p>

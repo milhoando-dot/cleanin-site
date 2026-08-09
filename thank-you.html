@@ -49,6 +49,17 @@
 <main id="conteudo">
 
   <section class="ctt-hero" style="padding-top:clamp(56px,7vw,100px)">
+    <!-- Se o envio falhar, o Worker traz a pessoa pra cá com ?erro=1. Sem isto
+         a página agradeceria por algo que não chegou. O bloco nasce escondido e
+         o script troca os dois; sem JavaScript aparecem os dois, o que é feio
+         mas é honesto, então o texto de erro já começa dizendo "se". -->
+    <div id="deu-erro" hidden>
+      <h1 data-rv>If you are seeing this, the message may not have gone through.</h1>
+      <p class="toque" data-rv>Please call or text
+      <a href="tel:+15619200422">+1 (561) 920-0422</a>, or email
+      <a href="mailto:getcleanin@gmail.com">getcleanin@gmail.com</a>. We answer both.</p>
+    </div>
+    <div id="deu-certo">
     <h1 data-rv>Thank you. We have your request.</h1>
     <p class="toque" data-rv>A person reads every message that arrives here, and
     you will hear back <b>within 12 hours</b>.</p>
@@ -60,6 +71,15 @@
       <a class="btn vazado" style="margin-left:10px"
          href="/services-the-elite-difference">See our services</a>
     </p>
+    </div>
+    <script>
+      /* ?erro=1 vem do Worker quando o Formspree não aceitou. */
+      (function () {
+        var erro = new URLSearchParams(location.search).get('erro') === '1';
+        document.getElementById('deu-erro').hidden = !erro;
+        document.getElementById('deu-certo').hidden = erro;
+      })();
+    </script>
   </section>
 
 </main>

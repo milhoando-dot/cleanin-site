@@ -66,16 +66,9 @@
       </ul>
     </div>
     <div class="forma">
-      <form class="cartao-form pedido" action="https://formspree.io/f/xrpzerkq" method="POST" data-assunto="Reservation">
+      <form class="cartao-form pedido" action="https://cleanin-formulario.trevistudios.workers.dev" method="POST" data-assunto="Reservation">
         <input type="hidden" name="_subject" value="Clean-in · New reservation" />
-        <!-- ⚠️ `_next` SÓ FUNCIONA NO PLANO PAGO do Formspree. Testado em
-             09/08/2026 com envio real e sem JavaScript: continua caindo em
-             formspree.io/thanks. Fica aqui porque passa a valer sozinho no dia
-             em que a conta virar paga, e não custa nada.
-             Com JavaScript nada disso é usado: o envio é por fetch e a
-             confirmação aparece na própria página. -->
-        <input type="hidden" name="_next"
-               value="https://getclean-in.com/thank-you" />
+
         <h2>Schedule Cleaning Service, South Florida</h2>
         <p class="mini">Confirm your residential or commercial appointment.</p>
         <div class="campo"><label for="rnome">Full name *</label><span class="dica-campo" id="rnome-dica">First and last name</span><input id="rnome" name="Full name" type="text" required aria-describedby="rnome-dica" autocomplete="name" minlength="3" /></div>
