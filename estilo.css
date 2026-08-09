@@ -637,6 +637,12 @@ footer{background:var(--ciano);color:var(--fumo);
   padding:clamp(56px,7vw,100px) 24px clamp(40px,5vw,72px)}
 .ctt-hero h1{color:#fff;margin-bottom:12px}
 .ctt-hero p{color:rgba(223,238,255,.8);font-size:17px;max-width:52ch;margin:0 auto}
+/* ⚠️ Esta faixa é NAVY, e o link herdava o azul escuro do site (#004B91):
+   1,65:1, ilegível. Vale pra qualquer link que apareça aqui dentro, hoje ou
+   depois. Medido no branco-gelo: 12,6:1. */
+.ctt-hero a:not(.btn){color:#DFEEFF;text-decoration:underline;
+  text-underline-offset:3px}
+.ctt-hero a:not(.btn):hover{color:#fff}
 .ctt-canais{display:grid;gap:16px;grid-template-columns:1fr;
   max-width:var(--env);margin:clamp(-26px,-3vw,-40px) auto 0;padding:0 24px;
   position:relative;z-index:2}

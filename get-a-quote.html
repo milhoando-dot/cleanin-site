@@ -66,6 +66,11 @@
     <div class="forma">
       <form class="cartao-form pedido" action="https://formspree.io/f/xrpzerkq" method="POST" data-assunto="Quote request">
         <input type="hidden" name="_subject" value="Clean-in · New quote request" />
+        <!-- Sem JavaScript o POST é nativo e o Formspree responde com a
+             PÁGINA DELE. Isto manda ele voltar pro nosso site. Com JS o
+             envio é por fetch e nada disso é usado. -->
+        <input type="hidden" name="_next"
+               value="https://www.getclean-in.com/thank-you" />
         <h2>Request a Custom Cleaning Quote</h2>
         <p class="mini">Experience the gold standard in <i>professional care</i>.
         Please provide your details below for a personalized quote.</p>
