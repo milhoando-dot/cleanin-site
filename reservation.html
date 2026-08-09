@@ -392,19 +392,25 @@ window.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ZOOM: a foto abre da janelinha pro full-bleed, o véu escurece,
-     a frase surge no fim */
+  /* ZOOM: a foto já entra inteira; o VÉU é que abre na diagonal, do canto
+     superior direito pro inferior esquerdo, e a frase surge no fim.
+
+     🔴 Antes quem abria era a foto, de uma janelinha central (inset 38%/34%)
+        pro full-bleed. O efeito era bonito no fim e péssimo no começo: 72% da
+        tela em branco, lida como site travado por quem não conhece a página.
+        Agora nenhum quadro da animação tem tela vazia. */
   var zoom = document.querySelector('.zoom');
   if (zoom) {
     var tlz = gsap.timeline({
       scrollTrigger: { trigger: zoom, start: 'top top', end: '+=140%',
                        pin: true, scrub: .6 } });
     tlz.to(zoom.querySelector('.moldz img'),
-      { clipPath: 'inset(0% 0% 0% 0%)', scale: 1, ease: 'none', duration: .6 }, 0);
+      { scale: 1, ease: 'none', duration: .7 }, 0);
+    /* o triângulo do véu encolhe pro canto inferior esquerdo */
     tlz.to(zoom.querySelector('.veu'),
-      { backgroundColor: 'rgba(0,21,44,.46)', ease: 'none', duration: .25 }, .45);
+      { clipPath: 'polygon(0% 100%, 0% 100%, 0% 100%)', ease: 'none', duration: .62 }, 0);
     tlz.to(zoom.querySelector('.dizer'),
-      { opacity: 1, y: 0, duration: .25, ease: 'power2.out' }, .55);
+      { opacity: 1, y: 0, duration: .25, ease: 'power2.out' }, .5);
   }
 
   /* revelação: um elemento sobe 26px com fade */

@@ -322,17 +322,22 @@ legend{font-size:14.5px;font-weight:500;color:var(--navy);margin-bottom:10px;pad
   .canal:hover{border-color:var(--azul);transform:translateY(-2px)}}
 
 /* ── rodapé (claro, #F1FFFF, como o original) ── */
+/* ⚠️ Media 435px de altura numa janela de 900: quase metade da tela pra
+   dizer telefone e e-mail. Enxugado pra ~290px. O rodape e assinatura, nao
+   secao: ele fecha a pagina, nao disputa espaco com ela. */
 footer{background:var(--ciano);color:var(--fumo);
-  padding:clamp(48px,5.6vw,76px) 0 32px}
-.rod{display:grid;gap:36px;grid-template-columns:1fr}
+  padding:clamp(34px,3.4vw,48px) 0 22px}
+.rod{display:grid;gap:26px 40px;grid-template-columns:1fr;align-items:start}
 @media(min-width:760px){.rod{grid-template-columns:1.2fr 1fr 1fr}}
-.rod h3{font-family:var(--t-h);font-size:20px;font-weight:500;color:var(--navy);
-  margin-bottom:16px}
-.rod p,.rod li{font-size:17px;list-style:none;margin-bottom:8px}
+/* titulo de coluna vira rotulo: menor, versal e espacado. E o que separa
+   rodape de agencia de rodape improvisado. */
+.rod h3{font-family:var(--t-h);font-size:12px;font-weight:600;color:var(--navy);
+  text-transform:uppercase;letter-spacing:1.6px;margin-bottom:11px;opacity:.75}
+.rod p,.rod li{font-size:15px;list-style:none;margin-bottom:5px;line-height:1.55}
 .rod a{color:var(--fumo);text-decoration:underline}
 .rod a:hover{color:var(--azul)}
-.rod-logo{width:186px;height:auto;margin-bottom:18px}
-.redes{display:flex;gap:13px}
+.rod-logo{width:142px;height:auto;margin-bottom:12px}
+.redes{display:flex;gap:10px;margin-top:14px}
 .redes a{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;
   border:1px solid rgba(0,42,84,.18);color:var(--navy);text-decoration:none;
   transition:background .22s var(--ease),color .22s var(--ease),
@@ -341,9 +346,9 @@ footer{background:var(--ciano);color:var(--fumo);
 @media(hover:hover) and (pointer:fine){
   .redes a:hover{background:var(--navy);color:#fff;transform:translateY(-2px)}}
 .rod .lema{color:var(--navy);font-family:var(--t-h);font-weight:500;
-  font-size:19px;margin-top:14px}
-.fim{border-top:1px solid rgba(0,42,84,.13);margin-top:40px;padding-top:22px;
-  display:flex;flex-wrap:wrap;gap:8px 24px;font-size:15px}
+  font-size:15px;margin-top:10px;opacity:.85}
+.fim{border-top:1px solid rgba(0,42,84,.13);margin-top:24px;padding-top:16px;
+  display:flex;flex-wrap:wrap;gap:6px 22px;font-size:13.5px;opacity:.85}
 
 /* ══ ESTADOS INICIAIS DO MOVIMENTO (o GSAP anima; sem JS, tudo visível) ══ */
 .js [data-rv],.js [data-rv-g]>*{opacity:0}
@@ -439,16 +444,32 @@ footer{background:var(--ciano);color:var(--fumo);
 .cena49 .item p{color:rgba(223,238,255,.75);font-size:15px;line-height:1.45}
 
 /* ── SERVIÇOS HORIZONTAIS (pinados) ── */
-.horiz{position:relative;background:var(--nevoa);overflow:clip}
+/* ⚠️ A seção inteira tem que caber em UMA tela, título junto.
+   Antes era título + .palcoH de 100svh, ou seja, ~1000px numa janela de 900:
+   ao prender, o título subia pra fora da tela e os cartões ficavam cortados no
+   topo, com um terço da tela em branco embaixo. Medido: título em -552px,
+   cartão em -359px. Agora a seção é uma grade de duas faixas dentro de 100svh
+   e o palco fica com o que sobra. */
+/* ⚠️ `grid-template-columns:100%` não é enfeite: sem ele a coluna cresce até
+   caber a FILA de painéis (~2000px), e o título, que é centrado dentro da
+   coluna, vai parar fora da tela, encostado na direita. */
+.horiz{position:relative;background:var(--nevoa);overflow:clip;
+  min-height:100svh;display:grid;grid-template-rows:auto 1fr;
+  grid-template-columns:100%;align-content:center}
+.horiz .cabeca{padding-block:clamp(18px,3.2svh,40px) clamp(8px,1.8svh,20px)}
 .horiz .cabeca{padding:clamp(44px,5vw,72px) 0 0}
-.horiz .palcoH{display:flex;align-items:center;height:100svh}
+.horiz .palcoH{display:flex;align-items:center;height:auto;min-height:0}
 .horiz .fila{display:flex;gap:clamp(18px,2.4vw,34px);padding:0 max(24px,calc(50vw - 583px));
   will-change:transform}
 .painel{flex:0 0 clamp(300px,38vw,460px);background:#fff;
   box-shadow:0 14px 44px rgba(0,42,84,.10)}
 .painel .quadroP{overflow:hidden;line-height:0}
-.painel img{width:100%;aspect-ratio:1/1;object-fit:cover;
-  transition:transform .6s var(--ease)}
+/* A foto era quadrada (460px de lado). Com a legenda embaixo o cartão passava
+   de 610px e não sobrava tela pro título nem pra respiração. Agora a altura da
+   foto acompanha a janela, então legenda e título aparecem SEMPRE, em qualquer
+   notebook. */
+.painel img{width:100%;height:clamp(170px,34svh,320px);aspect-ratio:auto;
+  object-fit:cover;transition:transform .6s var(--ease)}
 .painel .corpo{padding:24px 26px 28px}
 .painel .n{font-family:var(--t-h);font-size:13px;letter-spacing:2.4px;
   color:var(--azul);display:block;margin-bottom:8px}
@@ -460,12 +481,45 @@ footer{background:var(--ciano);color:var(--fumo);
 .zoom{position:relative;background:var(--papel);overflow:clip}
 .zoom .palcoZ{min-height:100svh;display:grid;place-items:center;position:relative}
 .zoom .moldz{position:absolute;inset:0;display:grid;place-items:center}
+/* 🔴 A FOTO NUNCA É CORTADA. Ela era `clip-path:inset(38% 34%)`, ou seja, uma
+   janelinha central com 28% da altura: os outros 72% da tela ficavam BRANCOS
+   até a pessoa rolar o suficiente, e quem não conhece o site lê aquilo como
+   página travada. Agora a foto entra inteira, sangrando, desde o primeiro
+   quadro, e quem abre é o VÉU. */
 .zoom .moldz img{width:100%;height:100%;object-fit:cover;
-  clip-path:inset(38% 34% 38% 34%);will-change:clip-path,transform;
-  transform:scale(1.18)}
-.zoom .veu{position:absolute;inset:0;background:rgba(0,21,44,0);z-index:1}
+  will-change:transform;transform:scale(1.12)}
+
+/* O véu é TRANSLÚCIDO, então a foto aparece através dele o tempo todo, e
+   recua na diagonal: o triângulo coberto encolhe pro canto INFERIOR ESQUERDO,
+   e a foto se abre a partir do canto SUPERIOR DIREITO. */
+/* O véu é um DEGRADÊ, não uma cor chapada: assim a borda diagonal chega
+   quase transparente e o corte não vira uma linha dura no meio da foto. */
+.zoom .veu{position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to bottom left,
+    rgba(0,21,44,.12) 0%, rgba(0,21,44,.32) 45%, rgba(0,21,44,.48) 100%);
+  clip-path:polygon(0% 100%, 260% 100%, 0% -160%);will-change:clip-path}
+
+/* Sombra permanente no pé, só pro texto ter contraste sem depender da
+   animação ter rodado. Se o GSAP falhar, a frase continua legível. */
+/* 🔴 VEU DE LEITURA, PERMANENTE. O veu diagonal some no fim da animacao, e
+   sem isto a frase branca ficava sobre a foto no claro: mediu 4,08:1, abaixo
+   dos 4,5 exigidos. Este e radial e centrado, entao segura o texto sem apagar
+   os cantos da foto, que e onde a abertura diagonal precisa aparecer. */
+.zoom .palcoZ::after{content:"";position:absolute;inset:0;z-index:1;
+  pointer-events:none;background:linear-gradient(to bottom left,
+    rgba(0,21,44,0) 55%, rgba(0,21,44,.22) 100%)}
+/* 🔴 O contraste da frase vem de um PAINEL, não de escurecer a foto inteira.
+   Escurecer o meio da imagem passava no número (5,98:1) e ficava feio: uma
+   mancha oval solta no meio de uma sala clara. O painel é decisão visível,
+   garante 6:1 medido, e deixa a foto brilhando em volta. */
 .zoom .dizer{position:relative;z-index:2;text-align:center;color:#fff;
-  opacity:0;transform:translateY(24px);padding:0 24px}
+  opacity:0;transform:translateY(24px);
+  background:rgba(0,21,44,.62);
+  -webkit-backdrop-filter:blur(12px) saturate(115%);
+  backdrop-filter:blur(12px) saturate(115%);
+  border:1px solid rgba(255,255,255,.14);border-radius:20px;
+  padding:clamp(28px,3.6vw,46px) clamp(26px,4vw,54px);
+  max-width:min(660px,88vw);margin-inline:auto}
 .zoom .dizer h2{color:#fff;max-width:18ch;margin:0 auto 14px;
   text-shadow:0 2px 26px rgba(0,15,32,.5)}
 .zoom .dizer p{font-size:17px;text-shadow:0 1px 16px rgba(0,15,32,.6)}
@@ -498,7 +552,8 @@ footer{background:var(--ciano);color:var(--fumo);
   .ticker .trilho{animation:none}
   .rolar-dica::after{animation:none}
   .manifesto p{color:var(--navy)}
-  .zoom .moldz img{clip-path:none!important;transform:none!important}
+  .zoom .moldz img{transform:none!important}
+  .zoom .veu{clip-path:polygon(0% 100%,0% 100%,0% 100%)!important}
   .zoom .dizer{opacity:1!important;transform:none!important}
 }
 
