@@ -64,24 +64,24 @@
       </ul>
     </div>
     <div class="forma">
-      <form class="cartao-form pedido" action="https://formspree.io/f/xrpzerkq" method="POST" data-assunto="Quote request" novalidate>
+      <form class="cartao-form pedido" action="https://formspree.io/f/xrpzerkq" method="POST" data-assunto="Quote request">
         <input type="hidden" name="_subject" value="Clean-in · New quote request" />
         <h2>Request a Custom Cleaning Quote</h2>
         <p class="mini">Experience the gold standard in <i>professional care</i>.
         Please provide your details below for a personalized quote.</p>
         <div class="dois">
-          <div class="campo"><label for="nome">Full Name *</label><input id="nome" name="Full Name" type="text" required autocomplete="name" /></div>
-          <div class="campo"><label for="fone">Phone Number *</label><input id="fone" name="Phone Number" type="tel" required autocomplete="tel" /></div>
+          <div class="campo"><label for="nome">Full Name *</label><span class="dica-campo" id="nome-dica">First and last name</span><input id="nome" name="Full Name" type="text" required aria-describedby="nome-dica" autocomplete="name" minlength="3" /></div>
+          <div class="campo"><label for="fone">Phone Number *</label><span class="dica-campo" id="fone-dica">Example: (561) 920-0422</span><input id="fone" name="Phone Number" type="tel" required aria-describedby="fone-dica" autocomplete="tel" inputmode="tel" pattern="[0-9\(\)+.\s\-]{10,20}" title="Digits only, 10 to 20 characters" /></div>
         </div>
-        <div class="campo"><label for="mail">Email Address *</label><input id="mail" name="Email Address" type="email" required autocomplete="email" /></div>
-        <div class="campo"><label for="end">Address *</label><input id="end" name="Address" type="text" required autocomplete="street-address" /></div>
+        <div class="campo"><label for="mail">Email Address *</label><span class="dica-campo" id="mail-dica">Where we send the quote</span><input id="mail" name="Email Address" type="email" required aria-describedby="mail-dica" autocomplete="email" /></div>
+        <div class="campo"><label for="end">Address *</label><span class="dica-campo" id="end-dica">Street, number, city and ZIP</span><input id="end" name="Address" type="text" required aria-describedby="end-dica" autocomplete="street-address" minlength="8" /></div>
         <div class="campo"><label for="serv">Preferred Service *</label><select id="serv" name="Preferred Service" required><option value="" selected disabled>Select an option</option><option>Regular Cleaning</option><option>Deep Cleaning</option><option>Move-in / Move-out Cleaning</option><option>Personalized Cleaning</option></select></div>
         <div class="dois">
           <div class="campo"><label for="quartos">Number of rooms *</label><select id="quartos" name="Number of rooms" required><option value="" selected disabled>Select an option</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6+</option></select></div>
           <div class="campo"><label for="banheiros">Number of bathrooms *</label><select id="banheiros" name="Number of bathrooms" required><option value="" selected disabled>Select an option</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option></select></div>
         </div>
         <div class="campo"><label for="tipo">Property Type *</label><select id="tipo" name="Property Type" required><option value="" selected disabled>Select an option</option><option>House</option><option>Apartment</option><option>Mansion / Estate</option><option>Short-Term Rental (Airbnb/VRBO)</option><option>Office / Commercial</option><option>Other</option></select></div>
-        <div class="campo"><label for="area">Approximate Square Footage (sq ft) *</label><input id="area" name="Approximate Square Footage (sq ft)" type="text" required inputmode="numeric" /></div>
+        <div class="campo"><label for="area">Approximate Square Footage (sq ft) *</label><span class="dica-campo" id="area-dica">Numbers only. A rough estimate is fine</span><input id="area" name="Approximate Square Footage (sq ft)" type="number" required aria-describedby="area-dica" inputmode="numeric" min="100" max="60000" step="1" /></div>
         <div class="campo"><label for="req">Specific Cleaning Requirements</label><textarea id="req" name="Specific Cleaning Requirements" placeholder="Tell us about your property/space and any special requests..."></textarea></div>
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"
         aria-hidden="true" style="position:absolute;left:-9999px" />
@@ -234,6 +234,22 @@ window.addEventListener('DOMContentLoaded', function () {
       });
       return linhas;
     }
+    /* 🔴 O `novalidate` É POSTO AQUI, não no HTML. Ele estava cravado na
+       marcação, e quem valida é este script: com o JavaScript fora do ar o
+       navegador não conferia nada e o formulário VAZIO era enviado direto pra
+       caixa da Clean-in. Medido em 09/08/2026, com o JS desligado: chegou um
+       envio com todos os campos em branco. Pondo aqui, sem JS quem valida é o
+       navegador, e com JS a validação continua sendo a nossa. */
+    f.setAttribute('novalidate', '');
+
+    /* A data mínima é HOJE de verdade, não a data em que o site foi gerado.
+       O `min` do HTML é só o piso pra quem está sem JavaScript. */
+    var dataC = f.querySelector('input[type=date]');
+    if (dataC) {
+      var h = new Date(), z = function (n) { return String(n).padStart(2, '0'); };
+      dataC.min = h.getFullYear() + '-' + z(h.getMonth() + 1) + '-' + z(h.getDate());
+    }
+
     var ENDPOINT = f.getAttribute('action') || '';
     function enviar(via) {
       if (!f.reportValidity()) return;

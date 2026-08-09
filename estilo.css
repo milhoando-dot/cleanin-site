@@ -265,7 +265,19 @@ section{padding:clamp(44px,4.8vw,72px) 0;position:relative}
 .cartao-form>.mini i{font-style:italic}
 .campo{margin-bottom:22px}
 .campo label{display:block;font-size:14.5px;font-weight:500;color:var(--navy);
-  margin-bottom:7px}
+  margin-bottom:3px}
+
+/* A dica fica ENTRE o rótulo e o campo, e some quando o campo tem foco não:
+   ela some nunca. Quem lê o formulário pela segunda vez também precisa dela,
+   e placeholder desaparece justo quando a pessoa começa a digitar.
+   Cor medida: 4,71:1 sobre o branco do cartão. */
+.campo .dica-campo{display:block;font-size:12.5px;line-height:1.4;
+  color:#5A7593;margin-bottom:7px}
+
+/* Campo recusado ganha borda vermelha DEPOIS de a pessoa tentar enviar
+   (o :user-invalid não marca enquanto ela ainda está digitando pela 1ª vez). */
+.campo input:user-invalid,.campo select:user-invalid,.campo textarea:user-invalid{
+  border-color:#B3261E;box-shadow:0 0 0 3px rgba(179,38,30,.10)}
 .campo input,.campo textarea,.campo select{width:100%;font-family:var(--t-c);
   font-size:16px;color:var(--navy);background:#fff;
   border:1px solid var(--linha);border-radius:0;padding:10px 12px;height:42px;

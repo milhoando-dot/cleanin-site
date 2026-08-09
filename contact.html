@@ -183,6 +183,22 @@ window.addEventListener('DOMContentLoaded', function () {
       });
       return linhas;
     }
+    /* 🔴 O `novalidate` É POSTO AQUI, não no HTML. Ele estava cravado na
+       marcação, e quem valida é este script: com o JavaScript fora do ar o
+       navegador não conferia nada e o formulário VAZIO era enviado direto pra
+       caixa da Clean-in. Medido em 09/08/2026, com o JS desligado: chegou um
+       envio com todos os campos em branco. Pondo aqui, sem JS quem valida é o
+       navegador, e com JS a validação continua sendo a nossa. */
+    f.setAttribute('novalidate', '');
+
+    /* A data mínima é HOJE de verdade, não a data em que o site foi gerado.
+       O `min` do HTML é só o piso pra quem está sem JavaScript. */
+    var dataC = f.querySelector('input[type=date]');
+    if (dataC) {
+      var h = new Date(), z = function (n) { return String(n).padStart(2, '0'); };
+      dataC.min = h.getFullYear() + '-' + z(h.getMonth() + 1) + '-' + z(h.getDate());
+    }
+
     var ENDPOINT = f.getAttribute('action') || '';
     function enviar(via) {
       if (!f.reportValidity()) return;
