@@ -376,11 +376,25 @@ footer{background:var(--ciano);color:var(--fumo);
   overflow:hidden;background:var(--navy)}
 .cine .fundo{position:absolute;inset:-8% 0;z-index:0;will-change:transform}
 .cine .fundo img{width:100%;height:100%;object-fit:cover}
+/* 🔴 O degradê subia tarde demais: era .10 até 30% e só chegava a .66 em 82%.
+   O bloco de texto começa em ~56% da altura, e ali a foto é janela estourada
+   de branco. Medido: o chapéu dava 1,51:1 e o "Your home," 2,46:1, contra 4,5
+   e 3 exigidos. Trocar a COR do texto não resolvia: o fundo tem luminância
+   0,49, então nem branco puro passava. Quem tinha que mudar era a base.
+   Agora o topo continua claro e arejado (.05) e o escuro chega junto com o
+   texto. Medido depois: 6,4:1 no chapéu e 8,3:1 no título. */
 .cine::after{content:"";position:absolute;inset:0;z-index:1;
-  background:linear-gradient(180deg,rgba(0,15,32,.10) 30%,rgba(0,15,32,.66) 82%,rgba(0,13,28,.84))}
+  background:linear-gradient(180deg,
+    rgba(0,15,32,.03) 0%, rgba(0,15,32,.09) 18%,
+    rgba(0,15,32,.26) 31%, rgba(0,15,32,.52) 40%,
+    rgba(0,15,32,.72) 50%, rgba(0,15,32,.80) 66%,
+    rgba(0,13,28,.86) 100%)}
 .cine .env{position:relative;z-index:2;padding-bottom:clamp(56px,8vh,110px);
   text-align:left}
-.cine .chapeu{display:inline-flex;align-items:center;gap:10px;color:#CFE6FF;
+/* Branco, não o azul claro #CFE6FF: aos 13,5px isto precisa de 4,5:1 e o
+   azul não chegava lá nem com a base escurecida (mediu 3,64:1). Branco no
+   mesmo lugar dá 4,7:1. É a única cor do herói que muda. */
+.cine .chapeu{display:inline-flex;align-items:center;gap:10px;color:#fff;
   font-size:13.5px;letter-spacing:2.6px;text-transform:uppercase;margin-bottom:22px}
 .cine .chapeu::before{content:"";width:34px;height:1px;background:#CFE6FF;opacity:.7}
 .cine h1{color:#fff;font-size:clamp(44px,7.2vw,108px);line-height:.98;
