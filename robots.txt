@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://getclean-in.com/sitemap.xml
