@@ -17,5 +17,7 @@
   Cache-Control: public, max-age=2592000
 /*.css
   Cache-Control: public, max-age=604800
-/*.js
-  Cache-Control: public, max-age=604800
+# ⚠️ NÃO existe regra /*.js aqui de propósito. As regras do _headers são
+#    ADITIVAS: /anim/* e /*.js casavam os dois no gsap.min.js e o Worker
+#    mandava Cache-Control DUAS vezes na mesma resposta (medido em
+#    05/11/2026 no deploy de teste). Todo JS do site mora em /anim/.
