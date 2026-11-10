@@ -44,7 +44,13 @@
       "email": "getcleanin@gmail.com",
       "image": "https://getclean-in.com/img/logo.png",
       "priceRange": "$$",
-      "areaServed": { "@type": "GeoCircle", "name": "Miami to Jupiter Corridor, South Florida" },
+      "areaServed": [{ "@type": "City", "name": "Miami" }, { "@type": "City", "name": "Miami Beach" }, { "@type": "City", "name": "Aventura" }, { "@type": "City", "name": "Hollywood" }, { "@type": "City", "name": "Fort Lauderdale" }, { "@type": "City", "name": "Pompano Beach" }, { "@type": "City", "name": "Boca Raton" }, { "@type": "City", "name": "Delray Beach" }, { "@type": "City", "name": "Boynton Beach" }, { "@type": "City", "name": "West Palm Beach" }, { "@type": "City", "name": "Palm Beach Gardens" }, { "@type": "City", "name": "Jupiter" }],
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday",
+                      "Friday", "Saturday", "Sunday"],
+        "opens": "07:00", "closes": "19:00"
+      },
       "address": {
         "@type": "PostalAddress",
         "addressRegion": "FL",
@@ -194,11 +200,13 @@
         <ul>
           <li><a href="mailto:getcleanin@gmail.com">getcleanin@gmail.com</a></li>
           <li><a href="tel:+15619200422">+1 (561) 920-0422</a></li>
+          <li>Open 7am to 7pm every day</li>
         </ul>
       </div>
       <div>
-        <h3>Location</h3>
-        <ul><li>Miami to Jupiter Corridor</li><li>South Florida</li></ul>
+        <h3>Where we clean</h3>
+        <ul><li>Miami to Jupiter Corridor, South Florida</li></ul>
+        <p class="cidades">Miami, Miami Beach, Aventura, Hollywood, Fort Lauderdale, Pompano Beach, Boca Raton, Delray Beach, Boynton Beach, West Palm Beach, Palm Beach Gardens, Jupiter.</p>
         <p class="lema">Your home, treated like ours.</p>
       </div>
     </div>

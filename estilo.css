@@ -357,6 +357,12 @@ footer{background:var(--ciano);color:var(--fumo);
 .redes svg{width:19px;height:19px}
 @media(hover:hover) and (pointer:fine){
   .redes a:hover{background:var(--navy);color:#fff;transform:translateY(-2px)}}
+/* As 12 cidades (10/11/2026). Entram menores que o resto do rodape de
+   proposito: quem procura "cleaning in Delray Beach" precisa achar o nome na
+   pagina, mas quem ja esta no site nao precisa ler uma lista de 12 itens em
+   corpo 15. Detalhe de apoio, nao bloco de leitura. */
+.rod .cidades{font-size:13px;line-height:1.6;opacity:.72;margin-top:4px;
+  max-width:34ch}
 .rod .lema{color:var(--navy);font-family:var(--t-h);font-weight:500;
   font-size:15px;margin-top:10px;opacity:.85}
 .fim{border-top:1px solid rgba(0,42,84,.13);margin-top:24px;padding-top:16px;

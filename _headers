@@ -1,7 +1,7 @@
 # Gerado por gerar.py — NÃO editar à mão (o hash do CSP é recalculado a cada build).
 /*
   Strict-Transport-Security: max-age=31536000; includeSubDomains
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-sFGCElDZbTyD5Ds1drl/gKsfqenFZqAAXjYx9wN17tg=' 'sha256-hSIBHGimITCD26xHquM1WoMsVyTRHJV8HMyqgRkoEjU=' 'sha256-C0O32uI4tejwRgTTPfkSUDRtQbkcfGVlO55p7r4J93k=' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; form-action 'self' https://cleanin-formulario.trevistudios.workers.dev; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-R4AQVCleSoAcgD24vcl4Lsaq9sEgutZD7oqoKjzbGgs=' 'sha256-hSIBHGimITCD26xHquM1WoMsVyTRHJV8HMyqgRkoEjU=' 'sha256-C0O32uI4tejwRgTTPfkSUDRtQbkcfGVlO55p7r4J93k=' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; form-action 'self' https://cleanin-formulario.trevistudios.workers.dev; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
