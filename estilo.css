@@ -200,7 +200,8 @@ section{padding:clamp(44px,4.8vw,72px) 0;position:relative}
   text-transform:uppercase;color:var(--fumo)}
 
 /* ── REVIEWS: grade de fotos com o texto POR CIMA, como o original ── */
-.mural{display:grid;gap:0;grid-template-columns:1fr}
+/* overflow-x:clip: rede de segurança, nenhuma célula que entra animada pode empurrar a página pro lado (21/11) */
+.mural{display:grid;gap:0;grid-template-columns:1fr;overflow-x:clip}
 @media(min-width:760px){.mural{grid-template-columns:1fr 1fr}}
 .dep{position:relative;overflow:hidden;min-height:clamp(380px,42vw,600px);
   display:flex;align-items:center;justify-content:center}
@@ -224,8 +225,10 @@ section{padding:clamp(44px,4.8vw,72px) 0;position:relative}
   .dep:hover::after,.dep:focus-within::after{background:rgba(0,42,84,.30)}
   .dep:hover .txt,.dep:focus-within .txt{opacity:1;transform:none}
 }
+/* 🔴 21/11/2026 (pedido 21): com .55 o texto branco ficava entre 3,6:1 e 4,0:1 contra a parte mais clara da foto
+   atrás de cada linha (medido nas 6 fotos a 390 px; o mínimo é 4,5:1). O valor abaixo saiu da mesma medição. */
 @media(hover:none){
-  .dep>img{filter:brightness(.55)}
+  .dep>img{filter:brightness(.44)}
   .dep .txt{opacity:1;transform:none}
 }
 
